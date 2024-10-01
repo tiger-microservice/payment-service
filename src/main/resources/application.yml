@@ -1,0 +1,54 @@
+server:
+  port: 8098
+  servlet:
+    context-path: /payment
+
+spring:
+  application:
+    name: payment-service
+  banner:
+    location: tiger-banner.txt
+  datasource:
+    url: ${DBMS_CONNECTION}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    show-sql: false
+  kafka:
+    bootstrap-servers: ${KAFKA_CONNECTION:localhost:9092}
+    topic-send-message-inbound: send-message-inbound
+    producer:
+      bootstrap-servers: ${KAFKA_CONNECTION:localhost:9092}
+      properties:
+        acks: all
+        retries: 10
+        retry.backoff.ms: 1000
+  profiles:
+    active: dev
+
+jwt:
+  singer-key: ${JWT_SECRET_KEY}
+
+grpc:
+  server:
+    port: 9099
+
+axon:
+  axonserver:
+    servers: localhost:8124
+#    serializer:
+#      general: jackson
+#      events: jackson
+#      messages: jackson
+#      payload: jackson
+    configuration:
+      context: default
+      shards: 1
+    authentication:
+      token: your-token-if-required
+    ssl:
+      enabled: false # Đặt thành true nếu Axon Server yêu cầu SSL
