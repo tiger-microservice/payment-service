@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.tiger</groupId>
 	<artifactId>payment-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>payment-service</name>
 	<description>Project customer service using spring boot3 with jdk 21</description>
 	<properties>
