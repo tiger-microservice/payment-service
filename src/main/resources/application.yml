@@ -12,6 +12,16 @@ spring:
     url: ${DBMS_CONNECTION}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+      idle-timeout: 30000
+      pool-name: SpringBootHikariCP
+      minimum-idle: 3
+      max-lifetime: 1800000
+      connection-test-query: SELECT 1
+      auto-commit: false
   jpa:
     hibernate:
       ddl-auto: update
